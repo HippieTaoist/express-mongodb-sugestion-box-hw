@@ -72,5 +72,15 @@ module.exports = {
                 }
             }
         )
+    },
+
+    getSuggestionsByAuthor: (author, callback) => {
+        Suggestion.find(author, function (err, authorSuggestion) {
+            if (err) {
+                callback(err, null);
+            } else {
+                callback(null, authorSuggestion)
+            }
+        })
     }
 }

@@ -90,4 +90,20 @@ router.delete('/delete-suggestion-by-id/:id', function (req, res) {
     })
 })
 
+router.get('/by-author-suggestion/', function (req, res) {
+    suggestionController.getSuggestionsByAuthor(req.query, function (err, author) {
+        if (err) {
+            res.status(500).json({
+                message: "Something went wrong",
+                error: err.message
+            })
+        } else {
+            res.json({
+                message: "Success",
+                "author": author,
+            })
+        }
+    })
+})
+
 module.exports = router;
