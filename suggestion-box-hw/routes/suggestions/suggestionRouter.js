@@ -74,4 +74,20 @@ router.put('/update-suggestion-by-id/:id', function (req, res) {
 
 })
 
+router.delete('/delete-suggestion-by-id/:id', function (req, res) {
+    suggestionController.deleteSuggestion(req.params.id, function (err, deletedSuggestion) {
+        if (err) {
+            res.status(500).json({
+                message: "Something went wrong",
+                error: err.message
+            });
+        } else {
+            res.json({
+                message: "Success",
+                deletedSuggestion
+            })
+        }
+    })
+})
+
 module.exports = router;

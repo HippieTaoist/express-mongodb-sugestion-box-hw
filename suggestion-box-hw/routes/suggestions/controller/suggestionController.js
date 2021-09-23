@@ -57,8 +57,20 @@ module.exports = {
                 }
             }
         )
+    },
+
+    deleteSuggestion: (id, callback) => {
+        Suggestion.findByIdAndDelete(
+            id, {
+                new: true
+            },
+            function (err, deletedSuggestion) {
+                if (err) {
+                    callback(err, null);
+                } else {
+                    callback(null, deletedSuggestion);
+                }
+            }
+        )
     }
-
-    // deleteSuggestion: function
-
 }
